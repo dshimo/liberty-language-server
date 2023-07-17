@@ -41,14 +41,10 @@ public class DockerService {
         return instance;
     }
 
-    // saved paths 
-    public static final Path DEFAULT_CONTAINER_WLP_DIR = Paths.get("opt", "ol", "wlp");
-
-    public static final Path DEFAULT_CONTAINER_OL_PROPERTIES_PATH = 
-            DEFAULT_CONTAINER_WLP_DIR.resolve(Paths.get("lib", "versions", "openliberty.properties"));
-    public static final Path DEFAULT_CONTAINER_SCHEMAGEN_JAR_PATH = 
-            DEFAULT_CONTAINER_WLP_DIR.resolve(Paths.get("bin", "tools", "ws-schemagen.jar"));
-
+    // Liberty images use Unix path
+    public static final String DEFAULT_CONTAINER_WLP_DIR = "opt/ol/wlp/";
+    public static final String DEFAULT_CONTAINER_OL_PROPERTIES_PATH = DEFAULT_CONTAINER_WLP_DIR + "lib/versions/openliberty.properties";
+    public static final String DEFAULT_CONTAINER_SCHEMAGEN_JAR_PATH = DEFAULT_CONTAINER_WLP_DIR + "bin/tools/ws-schemagen.jar";
 
     /** ===== Public Methods ===== **/
 
