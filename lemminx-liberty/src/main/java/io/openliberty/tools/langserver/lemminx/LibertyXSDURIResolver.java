@@ -60,13 +60,11 @@ public class LibertyXSDURIResolver implements URIResolverExtension, IExternalGra
      * @return Path to schema xsd resource as URI.toString()
      */
     public String resolve(String baseLocation, String publicId, String systemId) {
-        LOGGER.info("Entering resolve method -- d.shi");
         if (LibertyUtils.isConfigXMLFile(baseLocation)) {
             try {
                 String serverXMLUri = URI.create(baseLocation).toString();
                 LibertyWorkspace libertyWorkspace = LibertyProjectsManager.getInstance().getWorkspaceFolder(serverXMLUri);
 
-                LOGGER.info("Preparing to enter the main logic -- d.shi");
                 if (libertyWorkspace != null) {
                     //Set workspace properties if not set 
                     LibertyUtils.getVersion(serverXMLUri);
@@ -75,16 +73,13 @@ public class LibertyXSDURIResolver implements URIResolverExtension, IExternalGra
                     //Check workspace for Liberty installation and generate schema.xsd file
                     //Return schema URI as String, otherwise use cached schema.xsd file
                     String serverSchemaUri = null;
-                    LOGGER.info("baseLocation: " + baseLocation);
                     if (libertyWorkspace.isLibertyInstalled()) {
-                        LOGGER.info("Liberty is installed");
                         Path schemaGenJarPath = LibertyUtils.findFileInWorkspace(libertyWorkspace, Paths.get("bin", "tools", "ws-schemagen.jar"));
                         if (schemaGenJarPath != null) {
                             //Generate schema file
                             serverSchemaUri = generateServerSchemaXsd(libertyWorkspace, schemaGenJarPath);
                         }
                     } else if (libertyWorkspace.isContainerAlive()) {
-                        LOGGER.info("Container is alive");
                         DockerService docker = DockerService.getInstance();
                         serverSchemaUri = docker.generateServerSchemaXsdFromContainer(libertyWorkspace);
                     }
