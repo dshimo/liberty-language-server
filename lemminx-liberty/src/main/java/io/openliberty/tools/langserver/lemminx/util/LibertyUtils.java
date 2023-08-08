@@ -72,8 +72,8 @@ public class LibertyUtils {
         }
 
         return isServerXMLFile(filePath) || isConfigDirFile(filePath) || 
-                LibertyProjectsManager.getInstance().getWorkspaceFolder(filePath).hasConfigFile(filePath);
-                // XmlReader.hasServerRoot(new File(filePath));
+                // LibertyProjectsManager.getInstance().getWorkspaceFolder(filePath).hasConfigFile(filePath);
+                XmlReader.hasServerRoot(new File(filePath));
     }
 
     public static boolean isConfigXMLFile(DOMDocument file) {
