@@ -6,6 +6,7 @@ import org.eclipse.lsp4j.CodeAction;
 import org.eclipse.lsp4j.Diagnostic;
 import org.eclipse.lsp4j.TextEdit;
 import org.eclipse.lsp4j.WorkspaceFolder;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -39,13 +40,13 @@ public class LibertyDiagnosticTest {
     LibertyProjectsManager libPM;
     LibertyWorkspace libWorkspace;
 
-    @BeforeEach
-    public void setupWorkspace() {
-        initList.add(new WorkspaceFolder(srcResourcesDir.toURI().toString()));
-        libPM = LibertyProjectsManager.getInstance();
-        libPM.setWorkspaceFolders(initList);
-        libWorkspace = libPM.getLibertyWorkspaceFolders().iterator().next();
-    }
+    // @BeforeAll
+    // public void setupWorkspace() {
+    //     initList.add(new WorkspaceFolder(srcResourcesDir.toURI().toString()));
+    //     libPM = LibertyProjectsManager.getInstance();
+    //     libPM.setWorkspaceFolders(initList);
+    //     libWorkspace = libPM.getLibertyWorkspaceFolders().iterator().next();
+    // }
 
     @Test
     public void testFeatureDuplicateDiagnostic() {
@@ -138,6 +139,10 @@ public class LibertyDiagnosticTest {
 
     @Test
     public void testDiagnosticsForInclude() throws IOException {
+        initList.add(new WorkspaceFolder(srcResourcesDir.toURI().toString()));
+        libPM = LibertyProjectsManager.getInstance();
+        libPM.setWorkspaceFolders(initList);
+        libWorkspace = libPM.getLibertyWorkspaceFolders().iterator().next();
         // LibertyWorkspace must be initialized
         List<WorkspaceFolder> initList = new ArrayList<WorkspaceFolder>();
         initList.add(new WorkspaceFolder(new File("src/test/resources").toURI().toString()));
@@ -196,6 +201,10 @@ public class LibertyDiagnosticTest {
 
     @Test
     public void testConfigElementMissingFeatureManager() throws JAXBException {
+        initList.add(new WorkspaceFolder(srcResourcesDir.toURI().toString()));
+        libPM = LibertyProjectsManager.getInstance();
+        libPM.setWorkspaceFolders(initList);
+        libWorkspace = libPM.getLibertyWorkspaceFolders().iterator().next();
         assertTrue(featureList.exists());
         FeatureService.getInstance().readFeaturesFromFeatureListFile(new ArrayList<Feature>(), libWorkspace, featureList);
         
@@ -210,6 +219,10 @@ public class LibertyDiagnosticTest {
 
     @Test
     public void testConfigElementDirect() throws JAXBException {
+        initList.add(new WorkspaceFolder(srcResourcesDir.toURI().toString()));
+        libPM = LibertyProjectsManager.getInstance();
+        libPM.setWorkspaceFolders(initList);
+        libWorkspace = libPM.getLibertyWorkspaceFolders().iterator().next();
         assertTrue(featureList.exists());
         FeatureService.getInstance().readFeaturesFromFeatureListFile(new ArrayList<Feature>(), libWorkspace, featureList);
 
@@ -248,6 +261,10 @@ public class LibertyDiagnosticTest {
 
     @Test
     public void testConfigElementTransitive() throws JAXBException {
+        initList.add(new WorkspaceFolder(srcResourcesDir.toURI().toString()));
+        libPM = LibertyProjectsManager.getInstance();
+        libPM.setWorkspaceFolders(initList);
+        libWorkspace = libPM.getLibertyWorkspaceFolders().iterator().next();
         assertTrue(featureList.exists());
         FeatureService.getInstance().readFeaturesFromFeatureListFile(new ArrayList<Feature>(), libWorkspace, featureList);
         String serverXML1 = String.join(newLine,
