@@ -50,6 +50,10 @@ public class LibertyDiagnosticTest {
 
     @Test
     public void testFeatureDuplicateDiagnostic() {
+        initList.add(new WorkspaceFolder(srcResourcesDir.toURI().toString()));
+        libPM = LibertyProjectsManager.getInstance();
+        libPM.setWorkspaceFolders(initList);
+        libWorkspace = libPM.getLibertyWorkspaceFolders().iterator().next();
         String serverXML = String.join(newLine, //
                 "<server description=\"Sample Liberty server\">", //
                 "       <featureManager>", //
@@ -75,6 +79,10 @@ public class LibertyDiagnosticTest {
 
     @Test
     public void testInvalidFeatureDiagnostic() throws BadLocationException{
+        initList.add(new WorkspaceFolder(srcResourcesDir.toURI().toString()));
+        libPM = LibertyProjectsManager.getInstance();
+        libPM.setWorkspaceFolders(initList);
+        libWorkspace = libPM.getLibertyWorkspaceFolders().iterator().next();
         String serverXML = String.join(newLine, //
                 "<server description=\"Sample Liberty server\">", //
                 "       <featureManager>", //
