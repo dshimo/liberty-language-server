@@ -71,7 +71,37 @@
             <version>4.2.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.lemminx</groupId>
+            <artifactId>org.eclipse.lemminx</artifactId>
+            <version>0.26.1</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>lemminx-releases</id>
+            <url>https://repo.eclipse.org/content/repositories/lemminx-releases/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>lemminx-snapshots</id>
+            <url>https://repo.eclipse.org/content/repositories/lemminx-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
   
     <build>
         <resources>

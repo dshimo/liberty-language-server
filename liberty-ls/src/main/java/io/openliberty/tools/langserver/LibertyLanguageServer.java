@@ -34,7 +34,7 @@ public class LibertyLanguageServer extends AbstractLanguageServer implements Pro
 
     private final WorkspaceService workspaceService;
     private final LibertyTextDocumentService textDocumentService;
-
+    private final LibertyLemminxServer libertyLemminxServer;
     private LanguageClient languageClient;
 
     private Integer parentProcessId;
@@ -43,6 +43,7 @@ public class LibertyLanguageServer extends AbstractLanguageServer implements Pro
         // Workspace service handles workspace settings changes and calls update settings. 
         this.textDocumentService = new LibertyTextDocumentService(this);
         this.workspaceService = new LibertyWorkspaceService(this);
+        this.libertyLemminxServer = new LibertyLemminxServer();
     }
 
 
