@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: OpenLiberty/ci.common
-          path: ci.common
+          path: liberty-ls/ci.common
       - name: Build ci.common
         working-directory: ./liberty-ls
         run: ./mvnw clean install -f ci.common -DskipTests
